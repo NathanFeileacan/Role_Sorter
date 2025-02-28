@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Role Assigner</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png" alt="Role Assigner Logo">
+
+    <h1>Role Assigner</h1>
+    <p>Enter user names, separated by commas:</p>
+    <input type="text" id="userNames" placeholder="Alice, Bob, Charlie">
+    <button onclick="assignRoles()">Sort Roles</button>
+
+    <div id="output"></div>
+
+    <script>
+        function assignRoles() {
+            let input = document.getElementById("userNames").value;
+            let users = input.split(",").map(name => name.trim()).filter(name => name);
+            if (users.length === 0) {
+                document.getElementById("output").innerHTML = "<p style='color: red;'>Please enter at least one name.</p>";
+                return;
+            }
+
+            shuffleArray(users);  // Randomize the list
+
+            let host = users.shift();  // 1 Host
+            let numParticipants = Math.min(Math.floor(Math.random() * 6) + 1, users.length);  // 1-6 Participants
+            let participants = users.splice(0, numParticipants);
+            let listeners = users;  // Remaining users are Listeners
+
+            document.getElementById("output").innerHTML = `
+                <p><strong>Host:</strong> ${host}</p>
+                <p><strong>Participants:</strong> ${participants.join(", ") || "None"}</p>
+                <p><strong>Listeners:</strong> ${listeners.join(", ") || "None"}</p>
+            `;
+        }
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                let j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+    </script>
+</body>
+</html>
