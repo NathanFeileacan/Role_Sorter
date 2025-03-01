@@ -59,10 +59,25 @@
         }
     </script>
 
-    <!-- Embedded Google Form -->
+   <!-- Embedded Google Form -->
 <div class="form-container">
-    <iframe src="https://forms.gle/LN8bAyNqCpj8t4Qz5?embedded=true"></iframe>
+    <iframe src="https://forms.gle/LN8bAyNqCpj8t4Qz5?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0" allowfullscreen></iframe>
 </div>
-    
+
+<style>
+    /* Make the Google Form Responsive */
+    .form-container {
+        width: 100%;
+        max-width: 700px; /* Adjust as needed */
+        margin: 20px auto;
+    }
+
+    .form-container iframe {
+        width: 100%;
+        height: 800px; /* Adjust height as needed */
+        border: none;
+    }
+</style>
+
 </body>
 </html>
